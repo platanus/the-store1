@@ -1,4 +1,5 @@
 class DeliveryCompany < ApplicationRecord
+  has_many :purchases, dependent: :nullify
 end
 
 # == Schema Information
