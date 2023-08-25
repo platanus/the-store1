@@ -27,6 +27,10 @@ async function buy() {
     loading.value = false;
   }
 }
+
+function goToItemDetails() {
+  window.location.href = `/items/${props.itemId}`;
+}
 </script>
 
 <template>
@@ -44,12 +48,20 @@ async function buy() {
         {{ name }}
       </span>
     </div>
-    <button
-      class="w-full py-4 text-blue-800 disabled:text-zinc-500"
-      :disabled="loading"
-      @click="buy"
-    >
-      Comprar
-    </button>
+    <div class="flex h-16 w-full justify-items-center">
+      <button
+        class="w-full py-4 text-blue-800 disabled:text-zinc-500"
+        :disabled="loading"
+        @click="buy"
+      >
+        Comprar
+      </button>
+      <button
+        class="w-full py-4 text-blue-800 disabled:text-zinc-500"
+        @click="goToItemDetails"
+      >
+        Detalles
+      </button>
+    </div>
   </div>
 </template>
