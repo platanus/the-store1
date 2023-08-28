@@ -19,8 +19,8 @@ const tagText = {
 
 <template>
   <div class="flex w-full items-center justify-between rounded-md bg-white px-4 py-3 shadow-md">
-    <span class="text-zinc-800 w-1/4">{{ itemName }}</span>
-    <span class="text-zinc-500 w-1/8">{{ date }}</span>
+    <span class="w-1/4 text-zinc-800">{{ itemName }}</span>
+    <span class="text-zinc-500">{{ date }}</span>
     <div
       :class="tagColorClasses[status]"
       class="rounded-md px-2 py-0.5 font-medium"

@@ -10,6 +10,7 @@ import UserSession from './components/user-session.vue';
 import ItemList from './components/item-list.vue';
 import PurchaseList from './components/purchase-list.vue';
 import ItemDetails from './components/item-details.vue';
+import PurchaseDetail from './components/purchase-detail.vue';
 import './css/application.css';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       PurchaseList,
       BaseNotifications,
       ItemDetails,
+      PurchaseDetail,
     },
   });
   app.component('BaseInput', BaseInput);
