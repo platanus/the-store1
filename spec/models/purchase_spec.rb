@@ -8,6 +8,7 @@ RSpec.describe Purchase, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:item) }
+    it { is_expected.to belong_to(:delivery_company).optional }
   end
 
   describe 'delegations' do
