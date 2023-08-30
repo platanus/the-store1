@@ -25,7 +25,10 @@ console.log(props.purchase);
     <purchase-product-card
       :purchase="purchase"
     />
-    <purchase-delivery-company />
+    <purchase-delivery-company
+      :name="purchase.deliveryCompany.name"
+      :phone-number="purchase.deliveryCompany.phoneNumber"
+    />
     <purchase-delivery-date-card />
   </div>
 </template>

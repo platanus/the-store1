@@ -1,9 +1,10 @@
 <script setup lang="ts">
-// import type { DeliveryCompany } from '../api/DeliveryCompany';
-// type Props = {
-//   // deliveryCompany: DeliveryCompany
-// };
-// defineProps<Props>();
+
+type Props = {
+  name: string
+  phoneNumber: string
+};
+defineProps<Props>();
 </script>
 
 <template>
@@ -15,10 +16,10 @@
     </div>
     <div class="flex h-24 flex-col items-start justify-start gap-4 self-stretch px-8 py-3">
       <div class="text-xl font-medium leading-7 text-zinc-800">
-        Despachando Ltda.
+        {{ name }}
       </div>
       <div class="text-lg font-normal leading-7 text-zinc-800">
-        +56975487991
+        {{ phoneNumber }}
       </div>
     </div>
   </div>
