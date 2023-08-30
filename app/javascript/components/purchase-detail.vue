@@ -8,9 +8,10 @@ import PurchaseDeliveryDateCard from './purchase-delivery-date-card.vue';
 
 type Props = {
   purchase: Purchase
-  status: string
 };
-defineProps<Props>();
+const props = defineProps<Props>();
+
+console.log(props.purchase);
 </script>
 
 <template>
