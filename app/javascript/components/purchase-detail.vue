@@ -15,8 +15,12 @@ defineProps<Props>();
 
 <template>
   <div class="flex w-full flex-col gap-y-4 space-y-8">
-    <back-button />
-    <purchase-message />
+    <back-button
+      :redirect-url="'/purchases'"
+    />
+    <purchase-message
+      v-if="!updatePurchase.deliveryCompany"
+    />
     <purchase-product-card
       :purchase="purchase"
     />

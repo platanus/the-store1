@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import vector from '../../assets/images/icons/vector.png';
+import type { Purchase } from 'api/purchases';
 
 type Props = {
+  id: number
   itemName: string
   status: 'pending' | 'delivered'
   date: string

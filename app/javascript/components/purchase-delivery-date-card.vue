@@ -1,9 +1,41 @@
 <script setup lang="ts">
-// import type { DeliveryCompany } from '../api/DeliveryCompany';
-// type Props = {
-//   // deliveryCompany: DeliveryCompany
-// };
-// defineProps<Props>();
+import { useNotification } from '@kyvg/vue3-notification';
+import { ref } from 'vue';
+import baseInput from './base-input.vue';
+import purchasesApi from '../api/purchases';
+import formatDate from '../utils/date-converter';
+
+type Props = {
+  date: Date
+  purchaseId: number
+};
+
+const props = defineProps<Props>();
+const isScheduling = ref(false);
+const deliveryDate = ref(new Date());
+const loading = ref(false);
+const { notify } = useNotification();
+
+const emit = defineEmits<{
+  (event: 'updatePurchaseDate', value: Date): void;
+}>();
+
+function toggleDate() {
+  isScheduling.value = !isScheduling.value;
+}
+async function updateDate() {
+  loading.value = true;
+  toggleDate();
+  try {
+    await purchasesApi.update(props.purchaseId, deliveryDate.value);
+    emit('updatePurchaseDate', deliveryDate.value);
+    notify({ text: 'Genial, actualizamos la fecha de tu compra', type: 'success' });
+  } catch (error) {
+    notify({ text: 'Ups, ocurrió un error! Inténtalo de nuevo', type: 'error' });
+  } finally {
+    loading.value = false;
+  }
+}
 </script>
 
 <template>
@@ -23,7 +55,7 @@
       Lunes 12 de diciembre
     </div>
     <div
-      v-if="!isSheduling"
+      v-if="!isScheduling"
       class="inline-flex items-center justify-start gap-4"
     >
       <div class="text-lg font-normal leading-7">
