@@ -44,15 +44,15 @@ async function updateDate() {
       <span>
         Tu orden está
       </span>
-      <span class="text-xl font-bold">
+      <span class="font-bold">
         programada
       </span>
       <span>
         para el:
       </span>
     </div>
-    <div class="text-center text-3xl font-medium leading-9">
-      Lunes 12 de diciembre
+    <div class="text-3xl font-medium leading-9">
+      {{ dateFormat }}
     </div>
     <div
       v-if="!isScheduling"

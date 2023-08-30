@@ -8,6 +8,8 @@ export interface Purchase {
   status: 'pending' | 'delivered';
   user: User;
   item: Item;
+  createdAt: string
+  purchaseDate: string;
   deliveryCompany: DeliveryCompany
 }
 

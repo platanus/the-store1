@@ -9,9 +9,7 @@ import PurchaseDeliveryDateCard from './purchase-delivery-date-card.vue';
 type Props = {
   purchase: Purchase
 };
-const props = defineProps<Props>();
-
-console.log(props.purchase);
+defineProps<Props>();
 </script>
 
 <template>
@@ -26,9 +24,13 @@ console.log(props.purchase);
       :purchase="purchase"
     />
     <purchase-delivery-company
+      v-if="purchase.deliveryCompany"
       :name="purchase.deliveryCompany.name"
       :phone-number="purchase.deliveryCompany.phoneNumber"
     />
-    <purchase-delivery-date-card />
+    <purchase-delivery-date-card
+      v-if="purchase.purchaseDate && purchase.status === 'pending'"
+      :date="purchase.purchaseDate"
+    />
   </div>
 </template>
