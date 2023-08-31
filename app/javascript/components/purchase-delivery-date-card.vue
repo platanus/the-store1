@@ -61,7 +61,10 @@ async function updateDate() {
       <div class="text-lg font-normal leading-7">
         No puedes ese día?
       </div>
-      <button class="flex items-center justify-center gap-1 rounded-lg border border-blue-800 px-4 py-2">
+      <button
+        class="flex items-center justify-center gap-1 rounded-lg border border-blue-800 px-4 py-2"
+        @click="toggleDate"
+      >
         <div class="text-lg font-medium leading-7 text-blue-800">
           Quiero reagendar
         </div>
@@ -74,15 +77,11 @@ async function updateDate() {
       <div class="text-base font-normal leading-normal text-zinc-800">
         Dinos que día quieres que te entreguemos el producto
       </div>
-      <div class="flex h-9 flex-col items-start justify-start">
-        <div class="flex h-9 flex-col items-start justify-start gap-1 self-stretch">
-          <div class="inline-flex items-start justify-start gap-3 self-stretch rounded-lg border border-zinc-300 bg-white px-3 py-2 shadow">
-            <div class="shrink grow basis-0 text-sm font-normal leading-tight text-zinc-300">
-              12/12/2022
-            </div>
-          </div>
-        </div>
-      </div>
+      <base-input
+        v-model="deliveryDate"
+        type="date"
+        class="w-80"
+      />
       <div class="inline-flex w-80 items-start justify-start gap-4">
         <button
           class="flex h-11 flex-1 items-center justify-center gap-1 rounded-full px-4 py-2 text-lg font-bold leading-7"

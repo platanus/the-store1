@@ -13,6 +13,10 @@ class Api::Internal::PurchasesController < Api::Internal::BaseController
     respond_with Purchase.create!(purchase_params.merge(user: current_user))
   end
 
+  def update
+    
+  end
+
   private
 
   def purchase
