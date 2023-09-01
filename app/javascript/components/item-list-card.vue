@@ -13,6 +13,7 @@ const props = defineProps<Props>();
 
 const currencyFormatter = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' });
 const formattedPrice = computed(() => currencyFormatter.format(props.price));
+const redirectUrl = computed(() => `/items/${props.itemId}`);
 
 const loading = ref(false);
 const { notify } = useNotification();
@@ -27,6 +28,7 @@ async function buy() {
     loading.value = false;
   }
 }
+
 </script>
 
 <template>
@@ -44,12 +46,20 @@ async function buy() {
         {{ name }}
       </span>
     </div>
-    <button
-      class="w-full py-4 text-blue-800 disabled:text-zinc-500"
-      :disabled="loading"
-      @click="buy"
-    >
-      Comprar
-    </button>
+    <div class="inline-flex h-16 w-full items-start justify-around py-4 px-3">
+      <button
+        class="items-center text-center text-lg font-medium text-blue-800 disabled:text-zinc-500"
+        :disabled="loading"
+        @click="buy"
+      >
+        Comprar
+      </button>
+      <a
+        class="items-center text-center text-lg font-medium text-blue-800 disabled:text-zinc-500"
+        :href="redirectUrl"
+      >
+        Detalles
+      </a>
+    </div>
   </div>
 </template>
