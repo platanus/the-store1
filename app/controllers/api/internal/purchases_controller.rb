@@ -14,7 +14,8 @@ class Api::Internal::PurchasesController < Api::Internal::BaseController
   end
 
   def update
-    
+    purchase.update!(purchase_params)
+    respond_with purchase
   end
 
   private
@@ -25,7 +26,8 @@ class Api::Internal::PurchasesController < Api::Internal::BaseController
 
   def purchase_params
     params.require(:purchase).permit(
-      :item_id
+      :item_id,
+      :purchase_date
     )
   end
 end

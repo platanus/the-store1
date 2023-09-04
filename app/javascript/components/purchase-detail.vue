@@ -31,6 +31,7 @@ defineProps<Props>();
     <purchase-delivery-date-card
       v-if="purchase.purchaseDate && purchase.status === 'pending'"
       :date="purchase.purchaseDate"
+      :purchase-id="purchase.id"
     />
   </div>
 </template>
