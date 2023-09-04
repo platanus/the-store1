@@ -5,7 +5,7 @@ type Props = {
   id: number
   itemName: string
   status: 'pending' | 'delivered'
-  date: string
+  date: Date
 };
 defineProps<Props>();
 const tagColorClasses = {
@@ -21,7 +21,14 @@ const tagText = {
 <template>
   <div class="flex w-full items-center justify-between rounded-md bg-white px-4 py-3 shadow-md">
     <span class="w-1/4 text-zinc-800">{{ itemName }}</span>
-    <span class="text-zinc-500">{{ date }}</span>
+    <span
+      v-if="date"
+      class="text-zinc-500"
+    >{{ date }}</span>
+    <span
+      v-else
+      class="text-zinc-500"
+    >-</span>
     <div
       :class="tagColorClasses[status]"
       class="rounded-md px-2 py-0.5 font-medium"
