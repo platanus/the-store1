@@ -12,11 +12,8 @@ defineProps<Props>();
   <div class="flex w-full flex-col gap-y-4">
     <purchase-list-card
       v-for="purchase in purchases"
-      :id="purchase.id"
       :key="purchase.id"
-      :item-name="purchase.item.name"
-      :status="purchase.status"
-      :date="purchase.purchaseDate"
+      :purchase="purchase"
     />
   </div>
 </template>
