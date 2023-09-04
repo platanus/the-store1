@@ -31,6 +31,7 @@ async function updateDate() {
     emit('updatePurchaseDate', deliveryDate.value);
     notify({ text: 'Genial, actualizamos la fecha de tu compra', type: 'success' });
   } catch (error) {
+    console.log('este es el error:', error);
     notify({ text: 'Ups, ocurrió un error! Inténtalo de nuevo', type: 'error' });
   } finally {
     loading.value = false;
@@ -52,7 +53,7 @@ async function updateDate() {
       </span>
     </div>
     <div class="text-3xl font-medium leading-9">
-      {{ dateFormat }}
+      {{ formatDate(date) }}
     </div>
     <div
       v-if="!isScheduling"

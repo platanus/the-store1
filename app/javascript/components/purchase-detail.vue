@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import type { Purchase } from '../api/purchases';
 import PurchaseProductCard from './purchase-product-card.vue';
 import PurchaseMessage from './purchase-message.vue';
@@ -9,7 +10,13 @@ import PurchaseDeliveryDateCard from './purchase-delivery-date-card.vue';
 type Props = {
   purchase: Purchase
 };
-defineProps<Props>();
+const props = defineProps<Props>();
+
+const updatePurchase = ref(props.purchase);
+
+function updatePurchaseDate(purchaseDate: Date) {
+  updatePurchase.value.purchaseDate = purchaseDate;
+}
 </script>
 
 <template>
@@ -21,17 +28,18 @@ defineProps<Props>();
       v-if="!updatePurchase.deliveryCompany"
     />
     <purchase-product-card
-      :purchase="purchase"
+      :purchase="updatePurchase"
     />
     <purchase-delivery-company
-      v-if="purchase.deliveryCompany"
-      :name="purchase.deliveryCompany.name"
-      :phone-number="purchase.deliveryCompany.phoneNumber"
+      v-if="updatePurchase.deliveryCompany"
+      :name="updatePurchase.deliveryCompany.name"
+      :phone-number="updatePurchase.deliveryCompany.phoneNumber"
     />
     <purchase-delivery-date-card
-      v-if="purchase.purchaseDate && purchase.status === 'pending'"
-      :date="purchase.purchaseDate"
-      :purchase-id="purchase.id"
+      v-if="updatePurchase.purchaseDate && purchase.status === 'pending'"
+      :date="updatePurchase.purchaseDate"
+      :purchase-id="updatePurchase.id"
+      @update-purchase-date="updatePurchaseDate"
     />
   </div>
 </template>

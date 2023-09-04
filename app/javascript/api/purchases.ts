@@ -9,7 +9,7 @@ export interface Purchase {
   user: User;
   item: Item;
   createdAt: string
-  purchaseDate: string;
+  purchaseDate: Date;
   deliveryCompany: DeliveryCompany
 }
 
