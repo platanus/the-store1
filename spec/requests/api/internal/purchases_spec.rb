@@ -116,4 +116,48 @@ RSpec.describe 'Api::Internal::PurchasesControllers', type: :request do
       end
     end
   end
+
+  describe 'PUT /update' do
+    let(:purchase) { create(:purchase, user: user) }
+    let(:purchase_id) { purchase.id }
+    let(:updated_attributes) { { purchase_date: Date.new(2023, 9, 5) } }
+
+    def perform
+      put "/api/internal/purchases/#{purchase_id}", params: { purchase: updated_attributes }
+    end
+
+    def perform_with_invalid_attributes
+      put "/api/internal/purchases/#{purchase_id}", params: { force_error: true }
+    end
+
+    context 'with authorized user' do
+      before do
+        sign_in(user)
+        perform
+      end
+
+      it 'updates the purchase' do
+        purchase.reload
+        expect(purchase.purchase_date).to eq(Date.new(2023, 9, 5))
+      end
+
+      it { expect(response.status).to eq(200) }
+    end
+
+    context 'with unauthenticated user' do
+      before { perform }
+
+      it { expect(response.status).to eq(401) }
+    end
+
+    context 'when update fails' do
+      before do
+        sign_in(user)
+        allow(purchase).to receive(:update!).and_raise(ActiveRecord::RecordInvalid)
+        perform_with_invalid_attributes
+      end
+
+      it { expect(response.status).to eq(500) }
+    end
+  end
 end
