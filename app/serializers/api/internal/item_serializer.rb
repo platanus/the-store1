@@ -1,5 +1,7 @@
 class Api::Internal::ItemSerializer < BaseSerializer
   type :item
+  has_many :reviews
+
   add_image_handling_attributes(
     attachment_name: :image,
     derivatives: ImageUploader::DERIVATIVES.keys,
