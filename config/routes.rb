@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :internal do
       resources :purchases, only: [:index, :create, :show]
-      resources :items, only: [:index, :show]
+      resources :items, only: [:index, :show] do
+        resources :reviews, only: [:create]
+      end
     end
   end
   devise_for :users
