@@ -1,12 +1,16 @@
 import api from './index';
 import type { User } from './users';
 import type { Item } from './items';
+import type { DeliveryCompany } from './delivery_company';
 
 export interface Purchase {
   id: number;
   status: 'pending' | 'delivered';
   user: User;
   item: Item;
+  createdAt: string
+  purchaseDate: Date;
+  deliveryCompany: DeliveryCompany
 }
 
 export default {
@@ -18,6 +22,18 @@ export default {
       url: path,
       data: {
         purchase: { itemId },
+      },
+    });
+  },
+
+  update(purchaseId: number, purchaseDate: Date) {
+    const path = `/api/internal/purchases/${purchaseId}`;
+
+    return api({
+      method: 'patch',
+      url: path,
+      data: {
+        purchase: { purchaseDate },
       },
     });
   },

@@ -13,8 +13,7 @@ defineProps<Props>();
     <purchase-list-card
       v-for="purchase in purchases"
       :key="purchase.id"
-      :item-name="purchase.item.name"
-      :status="purchase.status"
+      :purchase="purchase"
     />
   </div>
 </template>

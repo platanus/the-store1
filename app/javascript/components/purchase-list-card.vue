@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { Purchase } from 'api/purchases';
+
 type Props = {
-  itemName: string
-  status: 'pending' | 'delivered'
+  purchase: Purchase,
 };
 defineProps<Props>();
 const tagColorClasses = {
@@ -16,12 +17,26 @@ const tagText = {
 
 <template>
   <div class="flex w-full items-center justify-between rounded-md bg-white px-4 py-3 shadow-md">
-    <span class="text-zinc-800">{{ itemName }}</span>
+    <span class="w-1/4 text-zinc-800">{{ purchase.item.name }}</span>
+    <span
+      v-if="purchase.purchaseDate"
+      class="text-zinc-500"
+    >{{ purchase.purchaseDate }}</span>
+    <span
+      v-else
+      class="text-zinc-500"
+    >-</span>
     <div
-      :class="tagColorClasses[status]"
+      :class="tagColorClasses[purchase.status]"
       class="rounded-md px-2 py-0.5 font-medium"
     >
-      {{ tagText[status] }}
+      {{ tagText[purchase.status] }}
     </div>
+    <a :href="`/purchases/${purchase.id}`">
+      <inline-svg
+        :src="require('/app/assets/images/icons/arrow-right.svg')"
+        alt="arrow-right"
+      />
+    </a>
   </div>
 </template>
